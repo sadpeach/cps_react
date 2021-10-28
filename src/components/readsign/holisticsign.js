@@ -90,9 +90,20 @@ export default function HolisticSign({ model }) {
 
       const tensorData = res.dataSync();
       const tensorArray = []
-      tensorArray.push(tensorData[0]);
-      tensorArray.push(tensorData[1]);
-      tensorArray.push(tensorData[2]);
+      console.log('length of tensorData:',tensorData);
+      for (var i = 0; i < tensorData.length; i++) {
+        tensorArray.push(tensorData[i]);
+      }
+      // tensorArray.push(tensorData[0]);
+      // tensorArray.push(tensorData[1]);
+      // tensorArray.push(tensorData[2]);
+      // tensorArray.push(tensorData[3]);
+      // tensorArray.push(tensorData[4]);
+      // tensorArray.push(tensorData[5]);
+      // tensorArray.push(tensorData[6]);
+      // tensorArray.push(tensorData[7]);
+      // tensorArray.push(tensorData[8]);
+      console.log('probability:',tensorArray);
 
       // const finalData = tf.tensor1d(tensorArray);
       // const outcome = finalData.argMax().print();
@@ -174,6 +185,8 @@ export default function HolisticSign({ model }) {
             height: 480,
           }}
         ></canvas>
+
+        <h3>testing</h3>
       </div>
 
       
