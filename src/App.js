@@ -1,15 +1,12 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import Layout from './components/menu/menu';
 
 const App = ({ component: Component, rest }) => {
   return (
     <Route
       {...rest}
       render={(routeProps) => (
-        <Layout>
           <Component {...routeProps} />
-        </Layout>
       )}
     />
   );

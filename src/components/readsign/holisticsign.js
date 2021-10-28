@@ -12,7 +12,7 @@ import {
 
 import extract_keypoints from "./extractkeypoints";
 
-const ACTIONS = ['no','yes','sick','stop','help','drink','where','sorry','play']; 
+const ACTIONS = ['no', 'yes', 'sick', 'stop', 'help', 'drink', 'where', 'sorry', 'play'];
 
 export default function HolisticSign({ model }) {
 
@@ -21,7 +21,7 @@ export default function HolisticSign({ model }) {
   const [predidction, setPrediction] = useState([]);
   const [sentence, setSentence] = useState([]);
   const [sequence, setSequence] = useState([]);
-  const [predictedWord,setPredictedWord] = useState([]);
+  const [predictedWord, setPredictedWord] = useState([]);
 
   var camera = null;
 
@@ -81,16 +81,16 @@ export default function HolisticSign({ model }) {
     if (temp.length == 20) {
       // console.log('fed to temp:', temp);
       // temp = tf.tensor1d(temp);
-      const temp2 = tf.expandDims(temp,0);
+      const temp2 = tf.expandDims(temp, 0);
       // console.log('temp expand dimension:',temp2);
       // temp2.print()
-      
+
       // console.log('transformed temp:',temp)
       let res = model.predict(temp2);
 
       const tensorData = res.dataSync();
       const tensorArray = []
-      console.log('length of tensorData:',tensorData);
+      console.log('length of tensorData:', tensorData);
       for (var i = 0; i < tensorData.length; i++) {
         tensorArray.push(tensorData[i]);
       }
@@ -103,14 +103,14 @@ export default function HolisticSign({ model }) {
       // tensorArray.push(tensorData[6]);
       // tensorArray.push(tensorData[7]);
       // tensorArray.push(tensorData[8]);
-      console.log('probability:',tensorArray);
+      console.log('probability:', tensorArray);
 
       // const finalData = tf.tensor1d(tensorArray);
       // const outcome = finalData.argMax().print();
-      var indexOfMaxValue = tensorArray.reduce((iMax,x,i,arr)=>x>arr[iMax] ? i :iMax,0);
-      console.log('index of max value:',indexOfMaxValue);
-      console.log('Predicting Action:',ACTIONS[indexOfMaxValue]);
-      
+      var indexOfMaxValue = tensorArray.reduce((iMax, x, i, arr) => x > arr[iMax] ? i : iMax, 0);
+      console.log('index of max value:', indexOfMaxValue);
+      console.log('Predicting Action:', ACTIONS[indexOfMaxValue]);
+
       setPredictedWord(ACTIONS[indexOfMaxValue]);
     }
 
@@ -154,7 +154,9 @@ export default function HolisticSign({ model }) {
 
   return (
     <center>
-      <h1>Handsign: {predictedWord}</h1>
+      <h2>Translated text:</h2>
+      <textarea readOnly id="translatedText" style={{ fontSize: 30 }} value={predictedWord} className="border border-dark p-3 w-100"></textarea>
+      <br /><br />
       <div className="App">
         <Webcam
           ref={webcamRef}
@@ -166,8 +168,7 @@ export default function HolisticSign({ model }) {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 640,
-            height: 480,
+            width: "auto",
           }}
         />{" "}
         <canvas
@@ -181,15 +182,10 @@ export default function HolisticSign({ model }) {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 640,
-            height: 480,
+            width: "auto",
           }}
         ></canvas>
-
-        <h3>testing</h3>
       </div>
-
-      
     </center>
   );
 }

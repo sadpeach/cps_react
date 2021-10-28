@@ -39,7 +39,11 @@ export default function Home() {
     },[])
 
     return (
-        <div>
+        <div class="container-fluid text-center">
+            <h1 class="p-3"><b>The RSLI</b></h1>
+            <button type="button" className="btn btn-default btn-lg w-100 p-3">
+                <span id="audio" className="glyphicon glyphicon-volume-up" aria-hidden="true"> Audio On</span>
+            </button>
             <div>
                 {}
                 <HolisticSign model={model}/>
