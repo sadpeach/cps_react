@@ -12,7 +12,7 @@ import {
 
 import extract_keypoints from "./extractkeypoints";
 
-const ACTIONS = ['Thank You','Drink','yes']; 
+const ACTIONS = ['no','yes','sick','stop','help','drink','where','sorry','play']; 
 
 export default function HolisticSign({ model }) {
 
@@ -76,9 +76,9 @@ export default function HolisticSign({ model }) {
   }
 
   useEffect(() => {
-    const temp = sequence.slice(-30); // get last 30 sequences
+    const temp = sequence.slice(-20); // get last 30 sequences
 
-    if (temp.length == 30) {
+    if (temp.length == 20) {
       // console.log('fed to temp:', temp);
       // temp = tf.tensor1d(temp);
       const temp2 = tf.expandDims(temp,0);
