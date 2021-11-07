@@ -12,7 +12,7 @@ import {
 
 import extract_keypoints from "./extractkeypoints";
 
-const ACTIONS = ['no', 'yes', 'sick', 'stop', 'help', 'drink', 'where', 'sorry', 'play'];
+const ACTIONS = ['no', 'yes', 'sick', 'help', 'play', 'stop'];
 
 export default function HolisticSign({ model }) {
 
